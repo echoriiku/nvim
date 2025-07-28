@@ -1,4 +1,3 @@
-vim.cmd.colorscheme("sorbet")
 vim.o.winborder = "rounded"
 vim.opt.number = true                              -- Line numbers
 vim.opt.relativenumber = true                      -- Relative line numbers
@@ -13,10 +12,21 @@ vim.opt.showmatch = true                           -- Highlight matching bracket
 vim.opt.matchtime = 2                              -- How long to show matching bracket
 vim.opt.swapfile = false                           -- Don't create swap files
 vim.opt.undofile = true                            -- Persistent undo
-vim.opt.undodir = vim.fn.expand("~/.vim/undodir")  -- Undo directory
 vim.g.mapleader = " "                              -- Set leader key to space
+vim.cmd("set completeopt+=noselect")
+vim.opt.undodir = vim.fn.expand("~/.vim/undodir")  -- Undo directory
 -- Create undo directory if it doesn't exist
 local undodir = vim.fn.expand("~/.vim/undodir")
 if vim.fn.isdirectory(undodir) == 0 then
   vim.fn.mkdir(undodir, "p")
 end
+vim.pack.add({
+        { src = "https://github.com/vague2k/vague.nvim" },
+        { src = "https://github.com/echasnovski/mini.pick" }
+})
+require "mini.pick".setup()
+vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
+vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
+vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+require "vague".setup({ transparent = true })
+vim.cmd("colorscheme vague")
