@@ -1,4 +1,4 @@
-vim.cmd.colorscheme("habamax")
+vim.cmd.colorscheme("sorbet")
 vim.opt.number = true                              -- Line numbers
 vim.opt.relativenumber = true                      -- Relative line numbers
 vim.opt.cursorline = true                          -- Highlight current line
